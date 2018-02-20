@@ -109,22 +109,15 @@
   <script>
 
   function updateCounters() {
-    // Total number of todos
-    var totalCount = document.getElementById('total-count');
-    var totalTodos = document.getElementsByClassName("todo").length;
-    totalCount.innerHTML = totalTodos;
+  var todoCount = $(".todo").length;
+  var completedCount = $(".completed").length;
 
-    // Total number of completed todos
-    var completedCount = document.getElementById('completed-count');
-    var completedTodos = document.getElementsByClassName("completed").length;
-    completedCount.innerHTML = completedTodos;
-
-    // Total number of uncompleted todos
-    var todoCount = document.getElementById('todo-count');
-    var uncompletedTodos = totalTodos - completedTodos;
-    todoCount.innerHTML = uncompletedTodos;
+  $("#total-count").html(todoCount);
+  $("#completed-count").html(completedCount);
+  $("#todo-count").html(todoCount - completedCount);
 }
-    updateCounters();
+
+updateCounters();
 
   function toggleDone() {
     var checkbox = this;
@@ -194,9 +187,9 @@
     list.removeChild(doneItems[i-1]);
 }
 
-    //   updateCounters();
-}
 
+}
+    $("#total-count").html($(".todo").length);
 </script>
 </body>
 </html>
