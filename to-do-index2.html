@@ -109,26 +109,19 @@
   <script>
 
   function updateCounters() {
-  var todoCount = $(".todo").length;
-  var completedCount = $(".completed").length;
+    var todoCount = $(".todo").length;
+    var completedCount = $(".completed").length;
 
-  $("#total-count").html(todoCount);
-  $("#completed-count").html(completedCount);
-  $("#todo-count").html(todoCount - completedCount);
+    $("#total-count").html(todoCount);
+    $("#completed-count").html(completedCount);
+    $("#todo-count").html(todoCount - completedCount);
 }
-
-updateCounters();
+    updateCounters();
 
   function toggleDone() {
     var checkbox = this;
 
-    // check the checked status of the checkbox
-    if (checkbox.checked) {
-    // the "completed" class is set on the parent element, the <li>
-    checkbox.parentElement.className = "todo completed";
-    } else {
-    checkbox.parentElement.className = "todo";
-    }
+    $(checkbox).parent().toggleClass("completed");
 }
 
   function submitTodo() {
@@ -190,6 +183,11 @@ updateCounters();
 
 }
     $("#total-count").html($(".todo").length);
+
+    $(document).ready(function() {
+    $("input[type=checkbox]").bind('change', toggleDone);
+    updateCounters();
+});
 </script>
 </body>
 </html>
